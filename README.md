@@ -21,8 +21,8 @@ official project [Sharpnado.MaterialFrame](https://github.com/roubachof/Sharpnad
 
 ## Initialization
 
-* On project in `App.xaml`:
 
+* On project in `MauiProgram.cs`:
 
 ```csharp
 public static MauiApp CreateMauiApp()
@@ -36,7 +36,7 @@ public static MauiApp CreateMauiApp()
 }
 ```
 
-* On project in `MauiProgram.cs`:
+* On project in `App.xaml`:
 
 ```csharp
 <?xml version = "1.0" encoding = "UTF-8" ?>
