@@ -17,13 +17,16 @@
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-                <rv:MaterialFrame Margin="10" Padding="10" MaterialTheme="AcrylicBlur" MaterialBlurStyle="Light" CornerRadius="10" >
-                    <Grid>
-                        <rv:MaterialEntry HeightRequest="120" Text="Hello, World!" UnderlineThickness="0" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-                    </Grid>
+            <Grid HeightRequest="64">
+                <rv:MaterialFrame Margin="10" Padding="5" MaterialTheme="AcrylicBlur" MaterialBlurStyle="Light" CornerRadius="10" >
+                    <Border Padding="5" StrokeThickness="1" BackgroundColor="Transparent">
+                        <rv:MaterialEntry Text="Hello, World!" UnderlineThickness="0" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    </Border>
                 </rv:MaterialFrame>
-                    
-                 <Label
+            </Grid> 
+
+
+            <Label
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"

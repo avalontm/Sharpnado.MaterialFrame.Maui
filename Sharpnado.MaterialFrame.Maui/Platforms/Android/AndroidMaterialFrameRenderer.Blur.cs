@@ -99,7 +99,7 @@ namespace Sharpnado.MaterialFrame.Maui.Droid
 
         private void LayoutBlurView()
         {
-            if (Width == 0 || Height == 0 || _realtimeBlurView == null)
+            if (MeasuredWidth == 0 || MeasuredHeight == 0 || _realtimeBlurView == null)
             {
                 return;
             }
@@ -109,7 +109,7 @@ namespace Sharpnado.MaterialFrame.Maui.Droid
 
             InternalLogger.Info(FormsId, $"Renderer::LayoutBlurView(element: {MaterialFrame.StyleId} | {width}x{height} | {MeasuredWidth}x{MeasuredHeight})");
 
-            _realtimeBlurView.Measure(width,height);
+            _realtimeBlurView.Measure(MeasuredWidth, MeasuredHeight);
             _realtimeBlurView.Layout(0, 0, width, height);
         }
 
