@@ -17,9 +17,12 @@
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <Grid HeightRequest="64">
+            <Grid HeightRequest="80">
                 <rv:MaterialFrame Margin="10" Padding="5" MaterialTheme="AcrylicBlur" MaterialBlurStyle="Light" CornerRadius="10" >
-                    <Border Padding="5" StrokeThickness="1" BackgroundColor="Transparent">
+                    <Border Padding="5,0,5,0" StrokeThickness="1" BackgroundColor="Transparent">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
                         <rv:MaterialEntry Text="Hello, World!" UnderlineThickness="0" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                     </Border>
                 </rv:MaterialFrame>
