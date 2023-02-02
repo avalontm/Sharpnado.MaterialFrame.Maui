@@ -1,18 +1,22 @@
 ﻿using Microsoft.Maui.Controls.Compatibility.Hosting;
 using Microsoft.Maui.LifecycleEvents;
-
-
 using System.Reflection;
+
 #if ANDROID
 using Sharpnado.MaterialFrame.Maui.Droid;
+using Sharpnado.MaterialFrame.Maui.Platforms.Android;
 #endif
 #if IOS
 using Sharpnado.MaterialFrame.Maui.iOS;
+using Sharpnado.MaterialFrame.Maui.Platforms.iOS;
+using UIKit;
 #endif
 #if WINDOWS
 using Microsoft.UI.Xaml;
 using Sharpnado.MaterialFrame.Maui.UWP;
+using Sharpnado.MaterialFrame.Maui.Platforms.Windows;
 #endif
+
 namespace Sharpnado.MaterialFrame.Maui
 {
     public static class MauiAppBuilderExtensions
@@ -29,6 +33,7 @@ namespace Sharpnado.MaterialFrame.Maui
 #if IOS
                 events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
                     iOSMaterialFrameRenderer.Init();
+
                     return false;
                 }));
 #endif
@@ -46,16 +51,21 @@ namespace Sharpnado.MaterialFrame.Maui
                         }));
 #endif
             });
+
 #if ANDROID
             builder.ConfigureMauiHandlers(handlers =>
             {
+                handlers.AddHandler(typeof(MaterialEntry), typeof(MaterialEntryHandler));
                 handlers.AddCompatibilityRenderer(typeof(MaterialFrame), typeof(AndroidMaterialFrameRenderer));
             });
 #endif
 
+
 #if IOS
             builder.ConfigureMauiHandlers(handlers =>
             {
+                handlers.AddHandler(typeof(MaterialNavigationPage), typeof(MaterialNavigationPageHandler));
+                handlers.AddHandler(typeof(MaterialShell), typeof(MaterialShellHandler));
                 handlers.AddCompatibilityRenderer(typeof(MaterialFrame), typeof(iOSMaterialFrameRenderer));
             });
 #endif
@@ -63,8 +73,12 @@ namespace Sharpnado.MaterialFrame.Maui
 #if WINDOWS
             builder.ConfigureMauiHandlers(handlers =>
             {
+                handlers.AddHandler(typeof(MaterialEntry), typeof(MaterialEntryHandler));
                 handlers.AddCompatibilityRenderer(typeof(MaterialFrame), typeof(UWPMaterialFrameRenderer));
+                
             });
+
+
 #endif
 
             return builder;

@@ -2,10 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
-             x:Class="MaterialFrame.Maui.MainPage" BackgroundImageSource="background.png">
+             x:Class="MaterialFrame.Maui.MainPage" BackgroundImageSource="wallpaper.png">
 
     <ScrollView>
-        <Grid>
 
                 <VerticalStackLayout
             Spacing="25"
@@ -18,11 +17,10 @@
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-                <rv:MaterialFrame Margin="10" Padding="10" MaterialTheme="AcrylicBlur" MaterialBlurStyle="Light" CornerRadius="10">
+                <rv:MaterialFrame Margin="10" Padding="10" MaterialTheme="AcrylicBlur" MaterialBlurStyle="Light" CornerRadius="10" >
                     <Grid>
-                        <Entry Margin="2" HeightRequest="48" Text="Hello, World!" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                        <rv:MaterialEntry HeightRequest="120" Text="Hello, World!" UnderlineThickness="0" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                     </Grid>
-                   
                 </rv:MaterialFrame>
                     
                  <Label
@@ -30,6 +28,7 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
+                TextColor="White"
                 HorizontalOptions="Center" />
 
                     <Button
@@ -41,7 +40,7 @@
 
                 </VerticalStackLayout>
      
-        </Grid>
+
     </ScrollView>
 
 </ContentPage>

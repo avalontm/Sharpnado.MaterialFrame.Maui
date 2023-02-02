@@ -9,7 +9,7 @@ namespace MaterialFrame.Maui
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseSharpnadoMaterialFrame(true,true)
+                .UseSharpnadoMaterialFrame(false)
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
