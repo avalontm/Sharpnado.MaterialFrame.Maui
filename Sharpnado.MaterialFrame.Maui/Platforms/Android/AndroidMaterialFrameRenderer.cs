@@ -18,7 +18,6 @@ namespace Sharpnado.MaterialFrame.Maui.Droid
     /// <summary>
     /// Renderer to update all frames with better shadows matching material design standards.
     /// </summary>
-    [Preserve]
     public partial class AndroidMaterialFrameRenderer : FrameRenderer
     {
         private GradientDrawable _mainDrawable;
@@ -28,6 +27,7 @@ namespace Sharpnado.MaterialFrame.Maui.Droid
         public AndroidMaterialFrameRenderer(Context context) : base(context)
         {
             _context = context;
+
         }
 
         private MaterialFrame MaterialFrame => (MaterialFrame)Element;
@@ -98,6 +98,7 @@ namespace Sharpnado.MaterialFrame.Maui.Droid
                 return;
             }
 
+            
             _mainDrawable = (GradientDrawable)Background;
 
             UpdateMaterialTheme();

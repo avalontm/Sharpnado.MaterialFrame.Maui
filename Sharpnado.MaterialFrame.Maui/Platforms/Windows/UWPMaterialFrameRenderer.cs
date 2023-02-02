@@ -1,31 +1,24 @@
-﻿/*
-using System.ComponentModel;
-using System.Numerics;
-using Microsoft.Maui.Controls.Compatibility;
+﻿using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Compatibility.Platform.UWP;
 using Microsoft.Maui.Controls.Platform;
-using Microsoft.Maui.Controls.Shapes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Hosting;
-using Sharpnado.MaterialFrame;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 using Sharpnado.MaterialFrame.Maui;
 using Sharpnado.MaterialFrame.Maui.UWP;
-using Windows.UI.Composition;
-using Windows.UI.Xaml;
+using System.ComponentModel;
+using System.Numerics;
+using CornerRadius = Microsoft.UI.Xaml.CornerRadius;
 
-using AcrylicBrush = Microsoft.UI.Xaml.Media.AcrylicBrush;
-using Grid = Microsoft.UI.Xaml.Controls.Grid;
-
-[assembly: ExportRenderer(typeof(MaterialFrame), typeof(UWPMaterialFrameRenderer))]
 
 namespace Sharpnado.MaterialFrame.Maui.UWP
 {
     /// <summary>
     ///     Renderer to update all frames with better shadows matching material design standards.
     /// </summary>
-    [Preserve]
-    public class UWPMaterialFrameRenderer : ViewRenderer<MaterialFrame, Grid>
+    public class UWPMaterialFrameRenderer : VisualElementRenderer<MaterialFrame, Microsoft.UI.Xaml.Controls.Grid>
     {
         private static readonly Color DarkBlurOverlayColor = Color.FromHex("#80000000");
         private static readonly Color DarkFallBackColor = Color.FromHex("#333333");
@@ -38,10 +31,10 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
 
         private Rectangle _acrylicRectangle;
         private Rectangle _shadowHost;
-        private Grid _grid;
+        private Microsoft.UI.Xaml.Controls.Grid _grid;
 
-        private Compositor _compositor;
-        private SpriteVisual _shadowVisual;
+        private Microsoft.UI.Composition.Compositor _compositor;
+        private Microsoft.UI.Composition.SpriteVisual _shadowVisual;
 
         public UWPMaterialFrameRenderer()
         {
@@ -81,7 +74,7 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
 
             if (Control == null)
             {
-                SetNativeControl(new Grid());
+                SetNativeControl(new Microsoft.UI.Xaml.Controls.Grid() {  VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Stretch, HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Stretch});
             }
 
             PackChild();
@@ -143,7 +136,12 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
             _acrylicRectangle = new Rectangle();
             _shadowHost = new Rectangle { Fill = Colors.Transparent.ToBrush() };
 
-            _grid = new Grid();
+            _grid = new Microsoft.UI.Xaml.Controls.Grid()
+            {
+                HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Stretch,
+                VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Stretch
+            };
+
             _grid.Children.Add(_acrylicRectangle);
             _grid.Children.Add(frameworkElement);
 
@@ -153,7 +151,7 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
 
         private void ToggleAcrylicRectangle(bool enable)
         {
-            _acrylicRectangle.Margin = new Microsoft.Maui.Thickness(0, enable ? 2 : 0, 0, 0);
+            _acrylicRectangle.Margin = new Microsoft.UI.Xaml.Thickness(0, enable ? 2 : 0, 0, 0);
             if (!enable)
             {
                 _acrylicRectangle.Fill = Colors.Transparent.ToBrush();
@@ -166,15 +164,15 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
             {
                 return;
             }
-
-            if (Element.BorderColor != ColorExt.Default)
+            if (Element.BorderColor != null)
             {
                 _grid.BorderBrush = Element.BorderColor.ToBrush();
-                _grid.BorderThickness = new Thickness(1);
+                _grid.BorderThickness = new Microsoft.UI.Xaml.Thickness(1);
             }
             else
             {
                 _grid.BorderBrush = new Color(0, 0, 0, 0).ToBrush();
+                _grid.BorderThickness = new Microsoft.UI.Xaml.Thickness(1);
             }
         }
 
@@ -281,7 +279,7 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
 
             if (_compositor == null)
             {
-                Visual hostVisual = ElementCompositionPreview.GetElementVisual(_grid);
+                Microsoft.UI.Composition.Visual hostVisual = ElementCompositionPreview.GetElementVisual(_grid);
                 _compositor = hostVisual.Compositor;
             }
 
@@ -364,7 +362,7 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
                 return;
             }
 
-            var acrylicBrush = new AcrylicBrush { BackgroundSource = Element.UwpHostBackdropBlur ? AcrylicBackgroundSource.HostBackdrop : AcrylicBackgroundSource.Backdrop };
+            var acrylicBrush = new AcrylicBrush();// {    BackgroundSource = Element.UwpHostBackdropBlur ? AcrylicBackgroundSource.HostBackdrop : AcrylicBackgroundSource.Backdrop };
 
             switch (Element.MaterialBlurStyle)
             {
@@ -396,7 +394,7 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
             {
                 var acrylicBrush = new AcrylicBrush
                 {
-                    BackgroundSource = Element.UwpHostBackdropBlur ? AcrylicBackgroundSource.HostBackdrop : AcrylicBackgroundSource.Backdrop,
+                    //BackgroundSource = Element.UwpHostBackdropBlur ? AcrylicBackgroundSource.HostBackdrop : AcrylicBackgroundSource.Backdrop,
                     TintColor = Element.UwpBlurOverlayColor.ToWindowsColor(),
                 };
 
@@ -427,4 +425,3 @@ namespace Sharpnado.MaterialFrame.Maui.UWP
     }
 }
 
-*/
