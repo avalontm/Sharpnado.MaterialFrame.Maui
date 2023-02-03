@@ -1,6 +1,8 @@
-﻿namespace MaterialFrame.Maui
+﻿using Sharpnado.MaterialFrame.Maui;
+
+namespace MaterialFrame.Maui
 {
-    public partial class AppShell : Shell
+    public partial class AppShell : MaterialShell
     {
         public AppShell()
         {
