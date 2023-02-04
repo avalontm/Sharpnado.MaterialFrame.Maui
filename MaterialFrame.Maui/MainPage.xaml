@@ -6,7 +6,7 @@
 
     <ScrollView>
 
-                <VerticalStackLayout
+        <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">

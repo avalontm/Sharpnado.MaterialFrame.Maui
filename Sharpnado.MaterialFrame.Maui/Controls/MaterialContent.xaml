@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sharpnado.MaterialFrame.Maui.Controls.MaterialContent"
+             xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
+             x:Name="this" BackgroundColor="AliceBlue">
+
+    <AbsoluteLayout BindingContext="{x:Reference this}">
+
+        <!-- CONTENT -->
+        <Grid x:Name="gridMain" Margin="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+
+        <!-- HEADER -->
+        <StackLayout Margin="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid HeightRequest="80">
+                <rv:MaterialFrame 
+                Margin="0"
+                Padding="5"
+                CornerRadius="0"
+                MaterialTheme="AcrylicBlur">
+                    <Grid >
+                        <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="18" TextColor="White" />
+                    </Grid>
+
+                </rv:MaterialFrame>
+            </Grid>
+        </StackLayout>
+    </AbsoluteLayout>
+    
+</ContentView>

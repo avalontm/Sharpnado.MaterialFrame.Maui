@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rv:MaterialShell
+<ContentPage
     x:Class="MaterialFrame.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MaterialFrame.Maui"
     xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:rc="clr-namespace:Sharpnado.MaterialFrame.Maui.Controls;assembly=Sharpnado.MaterialFrame.Maui"
+    xmlns:page1="clr-namespace:MaterialFrame.Maui">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
 
-</rv:MaterialShell>
+    <rc:MaterialContent ContentTemplate="{DataTemplate page1:MainPage}" Title="Demo"/>
+</ContentPage>

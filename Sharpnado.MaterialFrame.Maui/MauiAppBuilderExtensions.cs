@@ -55,7 +55,6 @@ namespace Sharpnado.MaterialFrame.Maui
 #if ANDROID
             builder.ConfigureMauiHandlers(handlers =>
             {
-                handlers.AddHandler(typeof(MaterialShell), typeof(MaterialShellHandler));
                 handlers.AddHandler(typeof(MaterialEntry), typeof(MaterialEntryHandler));
                 handlers.AddCompatibilityRenderer(typeof(MaterialFrame), typeof(AndroidMaterialFrameRenderer));
             });
@@ -66,7 +65,6 @@ namespace Sharpnado.MaterialFrame.Maui
             builder.ConfigureMauiHandlers(handlers =>
             {
                 handlers.AddHandler(typeof(MaterialNavigationPage), typeof(MaterialNavigationPageHandler));
-                handlers.AddHandler(typeof(MaterialShell), typeof(MaterialShellHandler));
                 handlers.AddCompatibilityRenderer(typeof(MaterialFrame), typeof(iOSMaterialFrameRenderer));
             });
 #endif

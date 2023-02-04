@@ -2,7 +2,7 @@
 
 namespace MaterialFrame.Maui
 {
-    public partial class AppShell : MaterialShell
+    public partial class AppShell : ContentPage
     {
         public AppShell()
         {
