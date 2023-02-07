@@ -6,8 +6,10 @@
     xmlns:local="clr-namespace:MaterialFrame.Maui"
     xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
     xmlns:rc="clr-namespace:Sharpnado.MaterialFrame.Maui.Controls;assembly=Sharpnado.MaterialFrame.Maui"
-    xmlns:page1="clr-namespace:MaterialFrame.Maui">
+    xmlns:page1="clr-namespace:MaterialFrame.Maui" BackgroundImageSource="wallpaper.png">
 
 
-    <rc:MaterialContent ContentTemplate="{DataTemplate page1:MainPage}" Title="Demo"/>
+    <rc:MaterialContent TabSource="{Binding TabIcons}" CurrentIndex="0"  Title="Demo" TabIconColor="{StaticResource Red}"/>
+
+
 </ContentPage>

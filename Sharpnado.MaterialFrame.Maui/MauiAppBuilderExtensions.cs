@@ -1,6 +1,8 @@
 ﻿using Microsoft.Maui.Controls.Compatibility.Hosting;
 using Microsoft.Maui.LifecycleEvents;
 using System.Reflection;
+using Sharpnado.CollectionView;
+using CommunityToolkit.Maui;
 
 #if ANDROID
 using Sharpnado.MaterialFrame.Maui.Droid;
@@ -26,7 +28,9 @@ namespace Sharpnado.MaterialFrame.Maui
             InternalLogger.EnableDebug = debugLogEnable;
             InternalLogger.EnableLogging = loggerEnable;
 
+            builder.UseMauiCommunityToolkit();
             builder.UseMauiCompatibility();
+            builder.UseSharpnadoCollectionView(loggerEnable, debugLogEnable);
 
             builder.ConfigureLifecycleEvents(events =>
             {

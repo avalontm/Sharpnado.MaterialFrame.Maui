@@ -1,12 +1,20 @@
-﻿namespace MaterialFrame.Maui
+﻿using Sharpnado.MaterialFrame.Maui;
+
+namespace MaterialFrame.Maui
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : MaterialContentPage
     {
         int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            System.Diagnostics.Debug.WriteLine($"[OnAppearing] MainPage");
         }
 
         private void OnCounterClicked(object sender, EventArgs e)

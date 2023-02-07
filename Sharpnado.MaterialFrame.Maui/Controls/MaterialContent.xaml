@@ -3,28 +3,116 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sharpnado.MaterialFrame.Maui.Controls.MaterialContent"
              xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
-             x:Name="this" BackgroundColor="AliceBlue">
+             xmlns:sho="http://sharpnado.com"
+             xmlns:vm="clr-namespace:Sharpnado.MaterialFrame.Maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="this" BackgroundColor="AliceBlue" >
 
     <AbsoluteLayout BindingContext="{x:Reference this}">
 
         <!-- CONTENT -->
-        <Grid x:Name="gridMain" Margin="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
-
+        <ScrollView x:Name="RootScrollView" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Scrolled="OnRootScrollViewScrolled" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Default">
+            <ContentView x:Name="HostGrid" x:FieldModifier="private" Margin="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+        </ScrollView>
+        
         <!-- HEADER -->
-        <StackLayout Margin="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-            <Grid HeightRequest="80">
+        <Grid  Margin="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid x:Name="_headerView" HeightRequest="80">
                 <rv:MaterialFrame 
                 Margin="0"
                 Padding="5"
                 CornerRadius="0"
                 MaterialTheme="AcrylicBlur">
                     <Grid >
-                        <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="18" TextColor="White" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" x:Name="ImageOverlay" Source="{Binding IconBack}"/>
+                        <Label Grid.Column="1" Text="{Binding Title, Mode=TwoWay}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
                     </Grid>
 
                 </rv:MaterialFrame>
             </Grid>
-        </StackLayout>
+
+            <Grid x:Name="BarStaticLayout" HeightRequest="80"
+                    BackgroundColor="{StaticResource White}"
+                    Margin="0"
+                    Padding="5">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding IconBack}"/>
+                <Label Grid.Column="1" Text="{Binding Title}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
+            </Grid>
+        </Grid>
+
+        <!-- FOOTER -->
+        <Grid Margin="0" VerticalOptions="End" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="0" Margin="0,0,1,0" MinimumHeightRequest="55" IsVisible="{Binding IsDisplayVisible}">
+                <rv:MaterialFrame 
+                Margin="0"
+                Padding="2"
+                CornerRadius="0"
+                MaterialTheme="AcrylicBlur">
+                    <Grid>
+                        <ContentView MinimumHeightRequest="55" x:Name="ExtraGrid" x:FieldModifier="private" Margin="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                 </rv:MaterialFrame>
+            </Grid>
+            
+            <Grid Grid.Row="1" x:Name="_tabView" MinimumHeightRequest="55">
+                <rv:MaterialFrame 
+                Margin="0"
+                Padding="2"
+                CornerRadius="0"
+                MaterialTheme="AcrylicBlur">
+                    <Grid>
+                        <sho:HorizontalListView
+                            CollectionPadding="5,10,0,5"
+                            CurrentIndex="{Binding CurrentIndex}"
+                            ItemHeight="32"
+                            ItemWidth="48"
+                            ItemSpacing="50"
+                            ItemsSource="{Binding TabSource}"
+                            SnapStyle="Start" HorizontalOptions="CenterAndExpand">
+                            <sho:HorizontalListView.ItemTemplate>
+                                <DataTemplate>
+                                    <sho:DraggableViewCell>
+                                        <ContentView>
+                                            
+                                            <Grid>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="onTabIconTapped" Command="{Binding Command}" CommandParameter="{Binding CommandParameter}"/>
+                                                </Grid.GestureRecognizers>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Image Grid.Row="0" Source="{Binding Icon}" vm:TintColorBehavior.AttachBehavior="{Binding Selected}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="24" WidthRequest="24"/>
+
+                                                <Label Grid.Row="1" Margin="0,8,0,0" Text="{Binding Title}" FontFamily="Lobster" FontSize="10" TextColor="{Binding Source={x:Reference this},Path=TabIconColor}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                            </Grid>
+                                          
+                                        </ContentView>
+                                    </sho:DraggableViewCell>
+                                </DataTemplate>
+                            </sho:HorizontalListView.ItemTemplate>
+                        </sho:HorizontalListView>
+                    </Grid>
+
+                </rv:MaterialFrame>
+            </Grid>
+
+        </Grid>
     </AbsoluteLayout>
     
 </ContentView>

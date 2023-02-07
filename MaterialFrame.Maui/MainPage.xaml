@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<rv:MaterialContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
-             x:Class="MaterialFrame.Maui.MainPage" BackgroundImageSource="wallpaper.png">
+             xmlns:rv="clr-namespace:Sharpnado.MaterialFrame.Maui;assembly=Sharpnado.MaterialFrame.Maui"
+             x:Class="MaterialFrame.Maui.MainPage"  HeightRequest="1080" BackgroundColor="Transparent">
 
-    <ScrollView>
 
         <VerticalStackLayout
             Spacing="25"
@@ -46,7 +45,4 @@
 
                 </VerticalStackLayout>
      
-
-    </ScrollView>
-
-</ContentPage>
+</rv:MaterialContentPage>

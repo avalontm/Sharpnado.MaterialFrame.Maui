@@ -11,6 +11,7 @@
     <Color x:Key="AcrylicFrameBackgroundColor">#F1F1F1</Color>
 
     <Color x:Key="AccentColor">#00E000</Color>
+    <Color x:Key="Red">#f21818</Color>
 
     <Color x:Key="PrimaryColor">Black</Color>
     <Color x:Key="SecondaryColor">#60000000</Color>
