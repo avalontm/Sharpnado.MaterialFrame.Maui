@@ -50,25 +50,25 @@
         </Grid>
 
         <!-- FOOTER -->
-        <Grid Margin="0" VerticalOptions="End" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <StackLayout Margin="0" VerticalOptions="End" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
 
-            <Grid Grid.Row="0" Padding="0" Margin="0,0,1,0" MinimumHeightRequest="55" IsVisible="{Binding IsDisplayVisible}">
+            <Grid Padding="0" Margin="0,0,0,0" HeightRequest="55" IsVisible="{Binding IsDisplayVisible}">
                 <rv:MaterialFrame 
                 Margin="0"
                 Padding="2"
                 CornerRadius="0"
+                Elevation="2"
                 MaterialTheme="AcrylicBlur">
-                    <Grid>
-                        <ContentView MinimumHeightRequest="55" x:Name="ExtraGrid" x:FieldModifier="private" Margin="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55"/>
+                        </Grid.RowDefinitions>
+                        <ContentView Margin="0" Padding="0" x:Name="ExtraGrid" x:FieldModifier="private" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                     </Grid>
                  </rv:MaterialFrame>
             </Grid>
-            
-            <Grid Grid.Row="1" x:Name="_tabView" MinimumHeightRequest="55">
+
+            <Grid x:Name="_tabView" HeightRequest="55">
                 <rv:MaterialFrame 
                 Margin="0"
                 Padding="2"
@@ -76,10 +76,10 @@
                 MaterialTheme="AcrylicBlur">
                     <Grid>
                         <sho:HorizontalListView
-                            CollectionPadding="5,10,0,5"
+                            CollectionPadding="5,12,0,5"
                             CurrentIndex="{Binding CurrentIndex}"
                             ItemHeight="32"
-                            ItemWidth="48"
+                            ItemWidth="58"
                             ItemSpacing="50"
                             ItemsSource="{Binding TabSource}"
                             SnapStyle="Start" HorizontalOptions="CenterAndExpand">
@@ -112,7 +112,7 @@
                 </rv:MaterialFrame>
             </Grid>
 
-        </Grid>
+        </StackLayout>
     </AbsoluteLayout>
     
 </ContentView>

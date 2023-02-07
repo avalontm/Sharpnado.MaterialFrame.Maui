@@ -1,8 +1,8 @@
 namespace Sharpnado.MaterialFrame.Maui.Resources.Styles;
 
-public partial class MaterialFrame : ResourceDictionary
+public partial class MaterialTheme : ResourceDictionary
 {
-	public MaterialFrame()
+	public MaterialTheme()
 	{
 		InitializeComponent();
 	}

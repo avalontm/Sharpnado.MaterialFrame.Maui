@@ -68,10 +68,17 @@
 	  <ApplicationVersion>1</ApplicationVersion>
 	  <DefineConstants></DefineConstants>
 	</PropertyGroup>
+	
+	<ItemGroup>
+	  <Compile Remove="Resources\Images\**" />
+	  <EmbeddedResource Remove="Resources\Images\**" />
+	  <MauiCss Remove="Resources\Images\**" />
+	  <MauiXaml Remove="Resources\Images\**" />
+	  <None Remove="Resources\Images\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Tizen\" />
-	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,13 +87,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Styles\MaterialTheme.xaml.cs">
+	    <DependentUpon>MaterialTheme.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Controls\MaterialContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\Colors.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\MaterialFrame.xaml">
+	  <MauiXaml Update="Resources\Styles\MaterialTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

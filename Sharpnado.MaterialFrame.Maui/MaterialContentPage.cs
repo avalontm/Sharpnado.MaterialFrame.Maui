@@ -10,8 +10,8 @@ namespace Sharpnado.MaterialFrame.Maui
     public class MaterialContentPage : ContentView
     {
         public Page Current { get { return Application.Current.MainPage; } }
-        int pTop = 80;
-        int pBot = 50;
+        public int pTop = 80;
+        public int pBot = 50;
 
         public MaterialContentPage()
         {
