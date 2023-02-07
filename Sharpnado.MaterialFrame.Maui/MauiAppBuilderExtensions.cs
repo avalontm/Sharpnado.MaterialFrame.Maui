@@ -27,12 +27,12 @@ namespace Sharpnado.MaterialFrame.Maui
         {
             InternalLogger.EnableDebug = debugLogEnable;
             InternalLogger.EnableLogging = loggerEnable;
-
-            builder.UseMauiCommunityToolkit();
-            builder.UseMauiCompatibility();
-            builder.UseSharpnadoCollectionView(loggerEnable, debugLogEnable);
-
-            builder.ConfigureLifecycleEvents(events =>
+           
+            builder
+            .UseMauiCommunityToolkit()
+            .UseMauiCompatibility()
+            .UseSharpnadoCollectionView(loggerEnable, debugLogEnable)
+            .ConfigureLifecycleEvents(events =>
             {
 #if IOS
                 events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
