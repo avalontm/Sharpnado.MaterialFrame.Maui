@@ -12,7 +12,7 @@ public partial class MaterialContent : ContentView
 
     public static readonly BindableProperty CurrentIndexProperty = BindableProperty.Create(nameof(CurrentIndex), typeof(int), typeof(MaterialContent), 0);
 
-    public static readonly BindableProperty IsDisplayVisibleProperty = BindableProperty.Create(nameof(IsDisplayVisible), typeof(bool), typeof(MaterialContent), false);
+    public static readonly BindableProperty IsDisplayVisibleProperty = BindableProperty.Create(nameof(IsDisplayVisible), typeof(bool), typeof(MaterialContent), propertyChanged: onIsDisplayVisible);
 
     public static readonly BindableProperty DisplayContentProperty = BindableProperty.Create(nameof(DisplayContent), typeof(MaterialContentPage), typeof(MaterialContent), propertyChanged: onExtraDataTempalte);
 
@@ -31,7 +31,11 @@ public partial class MaterialContent : ContentView
     public bool IsDisplayVisible
     {
         get => (bool)GetValue(IsDisplayVisibleProperty);
-        set => SetValue(IsDisplayVisibleProperty, value);
+        set
+        {
+            SetValue(IsDisplayVisibleProperty, value);
+            OnPropertyChanged("IsDisplayVisible");    
+        }
     }
 
     public MaterialContentPage DisplayContent
@@ -62,6 +66,16 @@ public partial class MaterialContent : ContentView
         get => (int)GetValue(CurrentIndexProperty);
         set => SetValue(CurrentIndexProperty, value);
     }
+
+    private static void onIsDisplayVisible(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is MaterialContent contentPresenter && newValue is bool isvisible)
+        {
+            contentPresenter.IsDisplayVisible = isvisible;
+            System.Diagnostics.Debug.WriteLine($"[IsDisplayVisible] {isvisible}");
+        }
+    }
+
 
     private static void onExtraDataTempalte(BindableObject bindable, object oldValue, object newValue)
     {

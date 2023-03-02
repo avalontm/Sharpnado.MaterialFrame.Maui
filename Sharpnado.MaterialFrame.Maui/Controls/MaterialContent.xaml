@@ -6,7 +6,7 @@
              xmlns:sho="http://sharpnado.com"
              xmlns:vm="clr-namespace:Sharpnado.MaterialFrame.Maui"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Name="this" BackgroundColor="AliceBlue" >
+             x:Name="this">
 
     <AbsoluteLayout BindingContext="{x:Reference this}">
 
@@ -29,7 +29,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" x:Name="ImageOverlay" Source="{Binding IconBack}"/>
-                        <Label Grid.Column="1" Text="{Binding Title, Mode=TwoWay}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
+                        <Label Grid.Column="1" Margin="10,0,0,0" Text="{Binding Title, Mode=TwoWay}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
                     </Grid>
 
                 </rv:MaterialFrame>
@@ -45,14 +45,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" Source="{Binding IconBack}"/>
-                <Label Grid.Column="1" Text="{Binding Title}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
+                <Label Grid.Column="1" Margin="10,0,0,0" Text="{Binding Title}" FontFamily="Lobster" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="22" TextColor="{StaticResource Black}" />
             </Grid>
         </Grid>
 
         <!-- FOOTER -->
         <StackLayout Margin="0" VerticalOptions="End" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
 
-            <Grid Padding="0" Margin="0,0,0,0" HeightRequest="55" IsVisible="{Binding IsDisplayVisible}">
+            <Grid Padding="0" Margin="0,0,0,0" HeightRequest="55" IsVisible="{Binding IsDisplayVisible, Mode=TwoWay}">
                 <rv:MaterialFrame 
                 Margin="0"
                 Padding="2"
@@ -75,15 +75,16 @@
                 CornerRadius="0"
                 MaterialTheme="AcrylicBlur">
                     <Grid>
-                        <sho:HorizontalListView
+                        <sho:CollectionView 
                             CollectionPadding="5,12,0,5"
                             CurrentIndex="{Binding CurrentIndex}"
                             ItemHeight="32"
                             ItemWidth="58"
-                            ItemSpacing="50"
+                            ItemSpacing="20"
+                            ColumnCount="3"
                             ItemsSource="{Binding TabSource}"
-                            SnapStyle="Start" HorizontalOptions="CenterAndExpand">
-                            <sho:HorizontalListView.ItemTemplate>
+                            CollectionLayout="Horizontal" SnapStyle="Center">
+                            <sho:CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <sho:DraggableViewCell>
                                         <ContentView>
@@ -105,8 +106,8 @@
                                         </ContentView>
                                     </sho:DraggableViewCell>
                                 </DataTemplate>
-                            </sho:HorizontalListView.ItemTemplate>
-                        </sho:HorizontalListView>
+                            </sho:CollectionView.ItemTemplate>
+                        </sho:CollectionView>
                     </Grid>
 
                 </rv:MaterialFrame>

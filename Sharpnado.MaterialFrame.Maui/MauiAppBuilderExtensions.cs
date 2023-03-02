@@ -1,6 +1,5 @@
 ﻿using Microsoft.Maui.Controls.Compatibility.Hosting;
 using Microsoft.Maui.LifecycleEvents;
-using System.Reflection;
 using Sharpnado.CollectionView;
 using CommunityToolkit.Maui;
 
@@ -27,7 +26,7 @@ namespace Sharpnado.MaterialFrame.Maui
         {
             InternalLogger.EnableDebug = debugLogEnable;
             InternalLogger.EnableLogging = loggerEnable;
-           
+
             builder
             .UseMauiCommunityToolkit()
             .UseMauiCompatibility()
@@ -35,7 +34,8 @@ namespace Sharpnado.MaterialFrame.Maui
             .ConfigureLifecycleEvents(events =>
             {
 #if IOS
-                events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
+                events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) =>
+                {
                     iOSMaterialFrameRenderer.Init();
 
                     return false;
