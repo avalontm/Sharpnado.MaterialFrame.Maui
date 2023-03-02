@@ -10,12 +10,44 @@ namespace Sharpnado.MaterialFrame.Maui
     public class MaterialContentPage : ContentView
     {
         public Page Current { get { return Application.Current.MainPage; } }
-        public int pTop = 80;
-        public int pBot = 50;
+
+        int _pTop = 80;
+        int _pBot = 50;
+
+        public int pTop
+        {
+            get { return _pTop; }
+            set
+            {
+                _pTop = value;
+                onChangePadding();
+                OnPropertyChanged("pTop");
+            }
+        }
+
+        public int pBot
+        {
+            get
+            {
+                return _pBot;
+            }
+            set
+            {
+                _pBot = value; 
+                onChangePadding();
+                OnPropertyChanged("pTop");
+            }
+        }
 
         public MaterialContentPage()
         {
-            Padding = new Thickness(Padding.Left + 0, Padding.Top +  pTop, Padding.Right + 0, Padding.Bottom + pBot);
+            onChangePadding();
+        }
+
+
+        void onChangePadding()
+        {
+            Padding = new Thickness(Padding.Left + 0, Padding.Top + pTop, Padding.Right + 0, Padding.Bottom + pBot);
         }
 
         public virtual void OnAppearing()
